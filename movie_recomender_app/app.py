@@ -4,9 +4,7 @@ import pandas as pd
 import requests
 import streamlit as st
 
-# ==========================================
 # 0. FUNGSI FETCH POSTER DARI API TMDB
-# ==========================================
 def fetch_poster(movie_id):
     # Masukin API Key TMDB:
     api_key = "be15199e0432eb194e280b104f9997f1"
@@ -53,18 +51,14 @@ def recommend(movie_title):
         
     return recommended_movies, recommended_movie_posters
 
-# ==========================================
 # 2. LOAD DATA BARU (TMDB 5000)
-# ==========================================
 movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
 with gzip.open('similarity.pkl.gz', 'rb') as f:
     similarity = pickle.load(f)
 
-# ==========================================
 # 3. LAYOUT UI STREAMLIT (TAMPILAN WEB)
-# ==========================================
 st.set_page_config(page_title="Movie Recommender", layout="wide")
 
 st.title("🎬 Movie Recommender System")
